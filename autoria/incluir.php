@@ -9,6 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incluir</title>
 </head>
+<?php
+        include_once '../autor/autor.php';
+        $at = new Autor();
+        $aut_bd = $at->listar();
+
+        include_once '../livro/livro.php';
+        $l = new Livro();
+        $liv_bd = $l->listar();
+        
+?>
 
 <body>
     <main>
@@ -16,26 +26,44 @@
         <h2>Incluir Autoria</h2>
         <form name="formProduto" method="POST" action="">
             <div class="linha">
-                <p>Titulo:</p>
-                <input name="txttitulo" type="text" maxlength="50" placeholder="">
+                <p>Código Autor:</p>
+                <select name="txtcodautor" type="text" placeholder="" required> 
+                <?php
+            foreach ($aut_bd as $aut_mostrar) {
+                ?>
+                    <option value="<?php echo $aut_mostrar[0]; ?>">
+                        <?php echo $aut_mostrar[0]. ' "' . $aut_mostrar[1].'"'; ?>
+                    </option>
+                <?php
+
+            }
+            ?>
+                </select>
             </div>
             <div class="linha">
-                <p>Categoria:</p>
-                <input name="txtcategoria" type="text" maxlength="20" placeholder="">
+                <p>CID Livro:</p>
+                <select name="txtcidlivro" type="text" placeholder="" required> 
+                <?php
+            foreach ($liv_bd as $liv_mostrar) {
+                ?>
+                    <option value="<?php echo $liv_mostrar[0]; ?>">
+                        <?php echo $liv_mostrar[0]. ' "' .$liv_mostrar[1]. '"'; ?>
+                    </option>
+                <?php
+
+            }
+            ?>
+                </select>
             </div>
             <div class="linha">
-                <p>ISBN:</p>
-                <input name="txtisbn" type="text" maxlength="17" placeholder="">
+                <p>Data de lançamento:</p>
+                <input name="txtdatalanc" type="date" placeholder="" required>
             </div>
             <div class="linha">
-                <p>Idioma:</p>
-                <input name="txtidioma" type="text" maxlength="20" placeholder="">
+                <p>Editora:</p>
+                <input name="txteditora" type="text" maxlength="20" placeholder="" required>
             </div>
-            <div class="linha">
-                <p>Quantidade de Páginas:</p>
-                <input name="txtqtdepag" type="number" maxlength="11" placeholder="">
-            </div>
-            <div class="linha"><button name="enviar" type="submit">Cadastrar</button>
+            <div class="linha linha-button"><button name="enviar" type="submit">Cadastrar</button>
                 <button name="limpar" type="reset">Limpar</button>
             </div>
         </form>
@@ -44,11 +72,10 @@
         if (isset($enviar)) {
             include_once 'autoria.php';
             $auto = new Autoria();
-            $auto->setCod_autor($txttitulo);
-            $auto->setCid_livro($txtcategoria);
-            $auto->set($txtisbn);
-            $auto->setIdioma($txtidioma);
-            $auto->setQtdePag($txtqtdepag);
+            $auto->setCod_autor($txtcodautor);
+            $auto->setCid_livro($txtcidlivro);
+            $auto->setDataLancamento($txtdatalanc);
+            $auto->setEditora($txteditora);
             echo "<h2>" . $auto->salvar() . "</h2>";
         }
         ?>

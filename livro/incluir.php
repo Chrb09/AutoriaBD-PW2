@@ -17,25 +17,25 @@
         <form name="formProduto" method="POST" action="">
             <div class="linha">
                 <p>Titulo:</p>
-                <input name="txttitulo" type="text" maxlength="50" placeholder="">
+                <input name="txttitulo" type="text" maxlength="50" placeholder="" required>
             </div>
             <div class="linha">
                 <p>Categoria:</p>
-                <input name="txtcategoria" type="text" maxlength="20" placeholder="">
+                <input name="txtcategoria" type="text" maxlength="20" placeholder="" required>
             </div>
             <div class="linha">
                 <p>ISBN:</p>
-                <input name="txtisbn" type="text" maxlength="17" placeholder="">
+                <input name="txtisbn" type="text" maxlength="17" placeholder="" required>
             </div>
             <div class="linha">
                 <p>Idioma:</p>
-                <input name="txtidioma" type="text" maxlength="20" placeholder="">
+                <input name="txtidioma" type="text" maxlength="20" placeholder="" required>
             </div>
             <div class="linha">
                 <p>Quantidade de Páginas:</p>
-                <input name="txtqtdepag" type="number" maxlength="11" placeholder="">
+                <input name="txtqtdepag" type="number" maxlength="11" placeholder="" required>
             </div>
-            <div class="linha"><button name="enviar" type="submit">Cadastrar</button>
+            <div class="linha  linha-button"><button name="enviar" type="submit">Cadastrar</button>
                 <button name="limpar" type="reset">Limpar</button>
             </div>
         </form>

@@ -72,7 +72,18 @@ body {
   color: #202020;
   background-color: #f0f4f4;
 }
-input {
+.linha-button{
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.linha p{
+  margin-bottom: 0.25em;
+  width: 100%;
+}
+input, select {
+  width: 100%;
   border-width: 2px;
   border-style: solid;
   border-color: #202020;

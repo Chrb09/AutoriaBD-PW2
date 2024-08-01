@@ -6,7 +6,7 @@ include_once '../conectar.php';
 class Autoria
 {
     private $Cod_autor;
-    private $Cod_livro;
+    private $Cid_livro;
     private $DataLancamento;
     private $Editora;
 
@@ -22,14 +22,14 @@ class Autoria
         $this->Cod_autor = $iCod_autor;
     }
 
-    public function getCod_livro()
+    public function getCid_livro()
     {
-        return $this->Cod_livro;
+        return $this->Cid_livro;
     }
 
-    public function setCod_livro($iCod_livro)
+    public function setCid_livro($iCid_livro)
     {
-        $this->Cod_livro = $iCod_livro;
+        $this->Cid_livro = $iCid_livro;
     }
 
     public function getDataLancamento()
@@ -53,12 +53,29 @@ class Autoria
     }
 
     // parte 3 - métodos
+    function salvar()
+    {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("insert into autoria values (?,?,?,?)");
+            @$sql->bindParam(1, $this->getCod_autor(), PDO::PARAM_STR);
+            @$sql->bindParam(2, $this->getCid_livro(), PDO::PARAM_STR);
+            @$sql->bindParam(3, $this->getDataLancamento(), PDO::PARAM_STR);
+            @$sql->bindParam(4, $this->getEditora(), PDO::PARAM_STR);
+            if ($sql->execute() == 1) {
+                return "Registo salvo com sucesso!";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            return "Erro ao salvar o registro. <h4>" . $exc->getMessage() . "</h4>";
+        }
+    }
 
     function listar()
     {
         try {
             $this->conn = new Conectar();
-            $sql = $this->conn->query("select * from autoria order by Cod_autor");
+            $sql = $this->conn->query("select * from autoria order by DataLancamento");
             $sql->execute();
             return $sql->fetchAll();
             $this->conn = null;
