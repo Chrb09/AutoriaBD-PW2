@@ -17,21 +17,21 @@
         <form name="formProduto" method="POST" action="">
             <div class="linha">
                 <p>Nome:</p>
-                <input name="txtautor" type="text" maxlength="20" placeholder="">
+                <input name="txtautor" type="text" maxlength="20" placeholder="" required>
             </div>
             <div class="linha">
                 <p>Sobrenome:</p>
-                <input name="txtsobrenome" type="text" maxlength="20" placeholder="">
+                <input name="txtsobrenome" type="text" maxlength="20" placeholder="" required>
             </div>
             <div class="linha">
                 <p>Email:</p>
-                <input name="txtemail" type="email" maxlength="35" placeholder="">
+                <input name="txtemail" type="email" maxlength="35" placeholder="" required>
             </div>
             <div class="linha">
                 <p>Data Nascimento:</p>
-                <input name="txtnasc" type="date"placeholder="">
+                <input name="txtnasc" type="date"placeholder="" required>
             </div>
-            <div class="linha"><button name="enviar" type="submit">Cadastrar</button>
+            <div class="linha  linha-button"><button name="enviar" type="submit">Cadastrar</button>
                 <button name="limpar" type="reset">Limpar</button>
             </div>
         </form>
