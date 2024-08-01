@@ -1,6 +1,6 @@
 <?php
 
-include_once 'conectar.php';
+include_once '../conectar.php';
 
 // parte 1 - atributos
 class Livro
@@ -74,7 +74,24 @@ class Livro
     }
 
     // parte 3 - métodos
-
+    function salvar()
+    {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("insert into livro values (null,?,?,?,?,?)");
+            @$sql->bindParam(1, $this->getTitulo(), PDO::PARAM_STR);
+            @$sql->bindParam(2, $this->getCategoria(), PDO::PARAM_STR);
+            @$sql->bindParam(3, $this->getISBN(), PDO::PARAM_STR);
+            @$sql->bindParam(4, $this->getIdioma(), PDO::PARAM_STR);
+            @$sql->bindParam(5, $this->getQtdePag(), PDO::PARAM_STR);
+            if ($sql->execute() == 1) {
+                return "Registo salvo com sucesso!";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            return "Erro ao salvar o registro. <h4>" . $exc->getMessage() . "</h4>";
+        }
+    }
     function listar()
     {
         try {
