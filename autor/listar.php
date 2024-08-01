@@ -12,7 +12,7 @@
 <body>
     <main>
         <h1>BD_Autoria</h1>
-        <h2>Autor</h2>
+        <h2>Listar Autor</h2>
 
         <?php
         include_once 'autor.php';
