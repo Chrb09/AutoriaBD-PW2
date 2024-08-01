@@ -13,27 +13,23 @@
 <body>
     <main>
         <h1>BD_Autoria</h1>
-        <h2>Incluir Livro</h2>
+        <h2>Incluir Autor</h2>
         <form name="formProduto" method="POST" action="">
             <div class="linha">
-                <p>Titulo:</p>
-                <input name="txttitulo" type="text" maxlength="50" placeholder="">
+                <p>Nome:</p>
+                <input name="txtautor" type="text" maxlength="20" placeholder="">
             </div>
             <div class="linha">
-                <p>Categoria:</p>
-                <input name="txtcategoria" type="text" maxlength="20" placeholder="">
+                <p>Sobrenome:</p>
+                <input name="txtsobrenome" type="text" maxlength="20" placeholder="">
             </div>
             <div class="linha">
-                <p>ISBN:</p>
-                <input name="txtisbn" type="text" maxlength="17" placeholder="">
+                <p>Email:</p>
+                <input name="txtemail" type="email" maxlength="35" placeholder="">
             </div>
             <div class="linha">
-                <p>Idioma:</p>
-                <input name="txtidioma" type="text" maxlength="20" placeholder="">
-            </div>
-            <div class="linha">
-                <p>Quantidade de Páginas:</p>
-                <input name="txtqtdepag" type="number" maxlength="11" placeholder="">
+                <p>Data Nascimento:</p>
+                <input name="txtnasc" type="date"placeholder="">
             </div>
             <div class="linha"><button name="enviar" type="submit">Cadastrar</button>
                 <button name="limpar" type="reset">Limpar</button>
@@ -42,14 +38,13 @@
         <?php
         extract($_POST, EXTR_OVERWRITE);
         if (isset($enviar)) {
-            include_once 'livro.php';
-            $liv = new Livro();
-            $liv->setTitulo($txttitulo);
-            $liv->setCategoria($txtcategoria);
-            $liv->setISBN($txtisbn);
-            $liv->setIdioma($txtidioma);
-            $liv->setQtdePag($txtqtdepag);
-            echo "<h2>" . $liv->salvar() . "</h2>";
+            include_once 'autor.php';
+            $aut = new Autor();
+            $aut->setNomeAutor($txtautor);
+            $aut->setSobrenome($txtsobrenome);
+            $aut->setEmail($txtemail);
+            $aut->setNasc($txtnasc);
+            echo "<h2>" . $aut->salvar() . "</h2>";
         }
         ?>
         <br> <button onclick="location.href='../menu.html'">Voltar</button>

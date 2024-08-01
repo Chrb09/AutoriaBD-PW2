@@ -64,6 +64,23 @@ class Autor
 
 
     // parte 3 - métodos
+    function salvar()
+    {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("insert into autor values (null,?,?,?,?)");
+            @$sql->bindParam(1, $this->getNomeAutor(), PDO::PARAM_STR);
+            @$sql->bindParam(2, $this->getSobrenome(), PDO::PARAM_STR);
+            @$sql->bindParam(3, $this->getEmail(), PDO::PARAM_STR);
+            @$sql->bindParam(4, $this->getNasc(), PDO::PARAM_STR);
+            if ($sql->execute() == 1) {
+                return "Registo salvo com sucesso!";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            return "Erro ao salvar o registro. <h4>" . $exc->getMessage() . "</h4>";
+        }
+    }
 
     function listar()
     {
