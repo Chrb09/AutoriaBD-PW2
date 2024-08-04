@@ -17,19 +17,22 @@
         <form name="formProduto" method="POST" action="">
             <div class="linha">
                 <p>Nome:</p>
-                <input name="txtautor" type="text" maxlength="20" placeholder="" required>
+                <input name="txtautor" type="text" maxlength="20" placeholder="Nome do autor..." required
+                    autocomplete="off">
             </div>
             <div class="linha">
                 <p>Sobrenome:</p>
-                <input name="txtsobrenome" type="text" maxlength="20" placeholder="" required>
+                <input name="txtsobrenome" type="text" maxlength="20" placeholder="Sobrenome do autor..." required
+                    autocomplete="off">
             </div>
             <div class="linha">
                 <p>Email:</p>
-                <input name="txtemail" type="email" maxlength="35" placeholder="" required>
+                <input name="txtemail" type="email" maxlength="35" placeholder="autor@email.com" required
+                    autocomplete="off">
             </div>
             <div class="linha">
                 <p>Data Nascimento:</p>
-                <input name="txtnasc" type="date"placeholder="" required>
+                <input name="txtnasc" type="date" placeholder="" required autocomplete="off">
             </div>
             <div class="linha  linha-button"><button name="enviar" type="submit">Cadastrar</button>
                 <button name="limpar" type="reset">Limpar</button>
@@ -51,5 +54,6 @@
         <br>
     </main>
 </body>
+
 
 </html>

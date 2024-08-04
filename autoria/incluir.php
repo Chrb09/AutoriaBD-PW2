@@ -10,14 +10,14 @@
     <title>Incluir</title>
 </head>
 <?php
-        include_once '../autor/autor.php';
-        $at = new Autor();
-        $aut_bd = $at->listar();
+include_once '../autor/autor.php';
+$at = new Autor();
+$aut_bd = $at->listar();
 
-        include_once '../livro/livro.php';
-        $l = new Livro();
-        $liv_bd = $l->listar();
-        
+include_once '../livro/livro.php';
+$l = new Livro();
+$liv_bd = $l->listar();
+
 ?>
 
 <body>
@@ -27,41 +27,41 @@
         <form name="formProduto" method="POST" action="">
             <div class="linha">
                 <p>Código Autor:</p>
-                <select name="txtcodautor" type="text" placeholder="" required> 
-                <?php
-            foreach ($aut_bd as $aut_mostrar) {
-                ?>
-                    <option value="<?php echo $aut_mostrar[0]; ?>">
-                        <?php echo $aut_mostrar[0]. ' "' . $aut_mostrar[1].'"'; ?>
-                    </option>
-                <?php
+                <select name="txtcodautor" required>
+                    <?php
+                    foreach ($aut_bd as $aut_mostrar) {
+                        ?>
+                        <option value=" <?php echo $aut_mostrar[0]; ?>">
+                            <?php echo $aut_mostrar[0] . ' "' . $aut_mostrar[1] . '"'; ?>
+                        </option>
+                        <?php
 
-            }
-            ?>
+                    }
+                    ?>
                 </select>
             </div>
             <div class="linha">
                 <p>CID Livro:</p>
-                <select name="txtcidlivro" type="text" placeholder="" required> 
-                <?php
-            foreach ($liv_bd as $liv_mostrar) {
-                ?>
-                    <option value="<?php echo $liv_mostrar[0]; ?>">
-                        <?php echo $liv_mostrar[0]. ' "' .$liv_mostrar[1]. '"'; ?>
-                    </option>
-                <?php
-
-            }
-            ?>
+                <select name="txtcidlivro" required>
+                    <?php
+                    foreach ($liv_bd as $liv_mostrar) {
+                        ?>
+                        <option value="<?php echo $liv_mostrar[0]; ?>">
+                            <?php echo $liv_mostrar[0] . ' "' . $liv_mostrar[1] . '"'; ?>
+                        </option>
+                        <?php
+                    }
+                    ?>
                 </select>
             </div>
             <div class="linha">
                 <p>Data de lançamento:</p>
-                <input name="txtdatalanc" type="date" placeholder="" required>
+                <input name="txtdatalanc" type="date" required autocomplete="off">
             </div>
             <div class="linha">
                 <p>Editora:</p>
-                <input name="txteditora" type="text" maxlength="20" placeholder="" required>
+                <input name="txteditora" type="text" maxlength="25" placeholder="Editora do livro..." required
+                    autocomplete="off">
             </div>
             <div class="linha linha-button"><button name="enviar" type="submit">Cadastrar</button>
                 <button name="limpar" type="reset">Limpar</button>
