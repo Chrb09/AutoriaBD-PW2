@@ -29,10 +29,10 @@ $liv_bd = $l->listar();
                 <p>Código Autor:</p>
                 <select name="txtcodautor" required>
                     <?php
-                    foreach ($aut_bd as $aut_mostrar) {
+                    foreach ($aut_bd as $prod_mostrar) {
                         ?>
-                        <option value=" <?php echo $aut_mostrar[0]; ?>">
-                            <?php echo $aut_mostrar[0] . ' "' . $aut_mostrar[1] . '"'; ?>
+                        <option value=" <?php echo $prod_mostrar[0]; ?>">
+                            <?php echo $prod_mostrar[0] . ' "' . $prod_mostrar[1] . '"'; ?>
                         </option>
                         <?php
 

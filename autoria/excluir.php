@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="../css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excluir</title>
+    <style>
+        td:nth-child(2),
+        th:nth-child(2) {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>

@@ -39,25 +39,25 @@
                 </th>
             </tr>
             <?php
-            foreach ($aut_bd as $aut_mostrar) {
+            foreach ($aut_bd as $prod_mostrar) {
                 ?>
                 <tr>
                     <td>
                         <b>
-                            <?php echo $aut_mostrar[0]; ?>
+                            <?php echo $prod_mostrar[0]; ?>
                         </b>
                     </td>
                     <td>
-                        <?php echo $aut_mostrar[1]; ?>
+                        <?php echo $prod_mostrar[1]; ?>
                     </td>
                     <td>
-                        <?php echo $aut_mostrar[2]; ?>
+                        <?php echo $prod_mostrar[2]; ?>
                     </td>
                     <td>
-                        <?php echo $aut_mostrar[3]; ?>
+                        <?php echo $prod_mostrar[3]; ?>
                     </td>
                     <td>
-                        <?php echo $aut_mostrar[4]; ?>
+                        <?php echo $prod_mostrar[4]; ?>
                     </td>
                 </tr>
                 <?php

@@ -94,6 +94,58 @@ class Autor
             echo "Erro ao executar consulta. " . $exc->getMessage();
         }
     }
+    function consultar($iescolha)
+    {
+        try {
+            $this->conn = new Conectar();
+            switch ($iescolha) {
+                case 'Cod_autor':
+                    $sql = $this->conn->prepare("select * from autor where Cod_autor like ?");
+                    @$sql->bindParam(1, $this->getCod_autor(), PDO::PARAM_STR);
+                    break;
+                case 'Nome':
+                    $nome = $this->getNomeAutor();
+                    $nome = '%' . $nome . '%';
+                    $sql = $this->conn->prepare("select * from autor where NomeAutor like ?");
+                    @$sql->bindParam(1, $nome, PDO::PARAM_STR);
+                    break;
+                case 'Sobrenome':
+                    $sobrenome = $this->getSobrenome();
+                    $sobrenome = '%' . $sobrenome . '%';
+                    $sql = $this->conn->prepare("select * from autor where Sobrenome like ?");
+                    @$sql->bindParam(1, $sobrenome, PDO::PARAM_STR);
+                    break;
+                case 'Email':
+                    $email = $this->getEmail();
+                    $email = '%' . $email . '%';
+                    $sql = $this->conn->prepare("select * from autor where Email like ?");
+                    @$sql->bindParam(1, $email, PDO::PARAM_STR);
+                    break;
+                case 'Data_Nascimento':
+                    $sql = $this->conn->prepare("select * from autor where Nasc like ?");
+                    @$sql->bindParam(1, $this->getNasc(), PDO::PARAM_STR);
+                    break;
+            }
+
+
+            $sql->execute();
+            return $sql->fetchAll();
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            echo "Erro ao executar consulta. " . $exc->getMessage();
+        }
+    }
+    function exclusao()
+    {
+        $this->conn = new Conectar();
+        $sql = $this->conn->prepare("delete from autor where Cod_autor = ?");
+        @$sql->bindParam(1, $this->getCod_autor(), PDO::PARAM_STR);
+        if ($sql->execute() == 1) {
+            return "Excluido com sucesso!";
+        } else {
+            return "Erro na exclusão!";
+        }
+    }
 } // encerramento de classe Produto
 
 ?>

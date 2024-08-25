@@ -42,12 +42,12 @@
         extract($_POST, EXTR_OVERWRITE);
         if (isset($enviar)) {
             include_once 'autor.php';
-            $aut = new Autor();
-            $aut->setNomeAutor($txtautor);
-            $aut->setSobrenome($txtsobrenome);
-            $aut->setEmail($txtemail);
-            $aut->setNasc($txtnasc);
-            echo "<h2>" . $aut->salvar() . "</h2>";
+            $prod = new Autor();
+            $prod->setNomeAutor($txtautor);
+            $prod->setSobrenome($txtsobrenome);
+            $prod->setEmail($txtemail);
+            $prod->setNasc($txtnasc);
+            echo "<h2>" . $prod->salvar() . "</h2>";
         }
         ?>
         <br> <button onclick="location.href='../menu.html'">Voltar</button>

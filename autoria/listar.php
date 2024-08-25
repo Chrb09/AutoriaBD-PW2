@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="../css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar</title>
+    <style>
+        td:nth-child(2),
+        th:nth-child(2) {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,20 +42,24 @@
                 </th>
             </tr>
             <?php
-            foreach ($aut_bd as $aut_mostrar) {
+            foreach ($aut_bd as $prod_mostrar) {
                 ?>
                 <tr>
                     <td>
-                        <?php echo $aut_mostrar[0]; ?>
+                        <b>
+                            <?php echo $prod_mostrar[0]; ?>
+                        </b>
                     </td>
                     <td>
-                        <?php echo $aut_mostrar[1]; ?>
+                        <b>
+                            <?php echo $prod_mostrar[1]; ?>
+                        </b>
                     </td>
                     <td>
-                        <?php echo $aut_mostrar[2]; ?>
+                        <?php echo $prod_mostrar[2]; ?>
                     </td>
                     <td>
-                        <?php echo $aut_mostrar[3]; ?>
+                        <?php echo $prod_mostrar[3]; ?>
                     </td>
                 </tr>
                 <?php
