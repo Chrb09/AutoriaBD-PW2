@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="img/icon.png" />
+    <link rel="icon" href="../img/icon.png" />
     <link rel="stylesheet" href="../css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesquisar</title>
@@ -13,7 +13,7 @@
     <main>
         <h1>BD_Autoria</h1>
         <h2>Pesquisar Autor</h2>
-        <form name="formProduto" method="POST" action="">
+        <form name="formautoruto" method="POST" action="">
             <div class="linha">
                 <p>Pesquisar na coluna:</p>
                 <select name="escolha" id="escolha-bd">
@@ -38,70 +38,70 @@
         extract($_POST, EXTR_OVERWRITE);
         if (isset($enviar)) {
             include_once 'autor.php';
-            $prod = new Autor();
+            $autor = new Autor();
             switch ($escolha) {
                 case 'Cod_autor':
-                    $prod->setCod_autor($txtpesquisar);
+                    $autor->setCod_autor($txtpesquisar);
                     break;
                 case 'Nome':
-                    $prod->setNomeAutor($txtpesquisar);
+                    $autor->setNomeAutor($txtpesquisar);
                     break;
                 case 'Sobrenome':
-                    $prod->setSobrenome($txtpesquisar);
+                    $autor->setSobrenome($txtpesquisar);
                     break;
                 case 'Email':
-                    $prod->setEmail($txtpesquisar);
+                    $autor->setEmail($txtpesquisar);
                     break;
                 case 'Data_Nascimento':
-                    $prod->setNasc($txtpesquisar);
+                    $autor->setNasc($txtpesquisar);
                     break;
             }
-            $produto_bd = $prod->consultar($escolha);
+            $autor_bd = $autor->consultar($escolha);
 
             ?>
-                    <table>
-                        <tr>
-                            <th>
-                                Cod_autor
-                            </th>
-                            <th>
-                                NomeAutor
-                            </th>
-                            <th>
-                                Sobrenome
-                            </th>
-                            <th>
-                                Email
-                            </th>
-                            <th>
-                                Nasc
-                            </th>
-                        </tr>
-                        <?php
-                        foreach ($produto_bd as $prod_mostrar) {
-                            ?>
-                                    <tr>
-                                        <td>
-                                            <b>
-                                                <?php echo $prod_mostrar[0]; ?>
-                                            </b>
-                                        </td>
-                                        <td>
-                                            <?php echo $prod_mostrar[1]; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $prod_mostrar[2]; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $prod_mostrar[3]; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $prod_mostrar[4]; ?>
-                                        </td>
-                                    </tr>
-                                    <?php
+            <table>
+                <tr>
+                    <th>
+                        Cod_autor
+                    </th>
+                    <th>
+                        NomeAutor
+                    </th>
+                    <th>
+                        Sobrenome
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Nasc
+                    </th>
+                </tr>
+                <?php
+                foreach ($autor_bd as $autor_mostrar) {
+                    ?>
+                    <tr>
+                        <td>
+                            <b>
+                                <?php echo $autor_mostrar[0]; ?>
+                            </b>
+                        </td>
+                        <td>
+                            <?php echo $autor_mostrar[1]; ?>
+                        </td>
+                        <td>
+                            <?php echo $autor_mostrar[2]; ?>
+                        </td>
+                        <td>
+                            <?php echo $autor_mostrar[3]; ?>
+                        </td>
+                        <td>
+                            <?php echo $autor_mostrar[4]; ?>
+                        </td>
+                    </tr>
+                    <?php
 
-                        }
+                }
         }
         ?>
         </table>
@@ -125,9 +125,11 @@
         pesquisa.placeholder = valor + " do autor...";
         if (valor == "Cod_autor") {
             pesquisa.type = 'number'
-        }
-        if (valor == "Data_Nascimento") {
+        } else if (valor == "Data_Nascimento") {
             pesquisa.type = 'date'
+        }
+        else {
+            pesquisa.type = 'text'
         }
     }
 

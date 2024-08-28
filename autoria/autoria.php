@@ -83,6 +83,54 @@ class Autoria
             echo "Erro ao executar consulta. " . $exc->getMessage();
         }
     }
+    function consultar($iescolha)
+    {
+        try {
+            $this->conn = new Conectar();
+            switch ($iescolha) {
+                case 'Cod_e_Cid':
+                    $sql = $this->conn->prepare("select * from autoria where Cod_autor like ? AND Cod_livro like ?");
+                    @$sql->bindParam(1, $this->getCod_autor(), PDO::PARAM_STR);
+                    @$sql->bindParam(2, $this->getCid_livro(), PDO::PARAM_STR);
+                    break;
+                case 'Cod_autor':
+                    $sql = $this->conn->prepare("select * from autoria where Cod_autor like ?");
+                    @$sql->bindParam(1, $this->getCod_autor(), PDO::PARAM_STR);
+                    break;
+                case 'Cid_livro':
+                    $sql = $this->conn->prepare("select * from autoria where Cid_livro like ?");
+                    @$sql->bindParam(1, $this->getCid_livro(), PDO::PARAM_STR);
+                    break;
+                case 'DataLancamento':
+                    $sql = $this->conn->prepare("select * from autoria where DataLancamento like ?");
+                    @$sql->bindParam(1, $this->getDataLancamento(), PDO::PARAM_STR);
+                    break;
+                case 'Editora':
+                    $Editora = $this->getEditora();
+                    $Editora = $Editora . '%';
+                    $sql = $this->conn->prepare("select * from autoria where Editora like ?");
+                    @$sql->bindParam(1, $Editora, PDO::PARAM_STR);
+                    break;
+            }
+            $sql->execute();
+            return $sql->fetchAll();
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            echo "Erro ao executar consulta. " . $exc->getMessage();
+        }
+    }
+    function exclusao()
+    {
+        $this->conn = new Conectar();
+        $sql = $this->conn->prepare("delete from autoria where Cod_autor = ? AND Cod_livro = ?");
+        @$sql->bindParam(1, $this->getCod_autor(), PDO::PARAM_STR);
+        @$sql->bindParam(2, $this->getCid_livro(), PDO::PARAM_STR);
+        if ($sql->execute() == 1) {
+            return "Excluido com sucesso!";
+        } else {
+            return "Erro na exclusão!";
+        }
+    }
 } // encerramento de classe Produto
 
 ?>

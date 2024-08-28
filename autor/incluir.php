@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="img/icon.png" />
+    <link rel="icon" href="../img/icon.png" />
     <link rel="stylesheet" href="../css/normalize.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,12 +42,12 @@
         extract($_POST, EXTR_OVERWRITE);
         if (isset($enviar)) {
             include_once 'autor.php';
-            $prod = new Autor();
-            $prod->setNomeAutor($txtautor);
-            $prod->setSobrenome($txtsobrenome);
-            $prod->setEmail($txtemail);
-            $prod->setNasc($txtnasc);
-            echo "<h2>" . $prod->salvar() . "</h2>";
+            $livro = new Autor();
+            $livro->setNomeAutor($txtautor);
+            $livro->setSobrenome($txtsobrenome);
+            $livro->setEmail($txtemail);
+            $livro->setNasc($txtnasc);
+            echo "<h2>" . $livro->salvar() . "</h2>";
         }
         ?>
         <br> <button onclick="location.href='../menu.html'">Voltar</button>

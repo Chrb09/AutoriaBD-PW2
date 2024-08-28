@@ -104,6 +104,62 @@ class Livro
             echo "Erro ao executar consulta. " . $exc->getMessage();
         }
     }
+    function consultar($iescolha)
+    {
+        try {
+            $this->conn = new Conectar();
+            switch ($iescolha) {
+                case 'Cid_livro':
+                    $sql = $this->conn->prepare("select * from livro where Cid_livro like ?");
+                    @$sql->bindParam(1, $this->getCid_livro(), PDO::PARAM_STR);
+                    break;
+                case 'Titulo':
+                    $titulo = $this->getTitulo();
+                    $titulo = '%' . $titulo . '%';
+                    $sql = $this->conn->prepare("select * from livro where NomeAutor like ?");
+                    @$sql->bindParam(1, $titulo, PDO::PARAM_STR);
+                    break;
+                case 'Categoria':
+                    $sql = $this->conn->prepare("select * from livro where Categoria like ?");
+                    @$sql->bindParam(1, $this->getCategoria(), PDO::PARAM_STR);
+                    break;
+                case 'ISBN':
+                    $ISBN = $this->getISBN();
+                    $ISBN = '%' . $ISBN . '%';
+                    $sql = $this->conn->prepare("select * from livro where ISBN like ?");
+                    @$sql->bindParam(1, $ISBN, PDO::PARAM_STR);
+                    break;
+                case 'Idioma':
+                    $sql = $this->conn->prepare("select * from livro where Idioma like ?");
+                    @$sql->bindParam(1, $this->getIdioma(), PDO::PARAM_STR);
+                    break;
+                case 'Quantidade_Páginas':
+                    $QtdePag = $this->getQtdePag();
+                    $QtdePag = $QtdePag . '%';
+                    $sql = $this->conn->prepare("select * from livro where QtdePag like ?");
+                    @$sql->bindParam(1, $QtdePag, PDO::PARAM_STR);
+                    break;
+            }
+
+
+            $sql->execute();
+            return $sql->fetchAll();
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            echo "Erro ao executar consulta. " . $exc->getMessage();
+        }
+    }
+    function exclusao()
+    {
+        $this->conn = new Conectar();
+        $sql = $this->conn->prepare("delete from livro where Cid_livro = ?");
+        @$sql->bindParam(1, $this->getCid_livro(), PDO::PARAM_STR);
+        if ($sql->execute() == 1) {
+            return "Excluido com sucesso!";
+        } else {
+            return "Erro na exclusão!";
+        }
+    }
 } // encerramento de classe Produto
 
 ?>

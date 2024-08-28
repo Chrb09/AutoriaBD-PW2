@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="img/icon.png" />
+    <link rel="icon" href="../img/icon.png" />
     <link rel="stylesheet" href="../css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excluir</title>
@@ -45,53 +45,53 @@
             extract($_POST, EXTR_OVERWRITE);
             if (isset($pesquisar)) {
                 include_once 'autor.php';
-                $prod = new Autor();
-                $prod->setCod_autor($txtid);
-                $produto_bd = $prod->consultar("Cod_autor");
+                $livro = new Autor();
+                $livro->setCod_autor($txtid);
+                $produto_bd = $livro->consultar("Cod_autor");
                 ?>
-                        <table id="table">
-                            <tr>
-                                <th>
-                                    Cod_autor
-                                </th>
-                                <th>
-                                    NomeAutor
-                                </th>
-                                <th>
-                                    Sobrenome
-                                </th>
-                                <th>
-                                    Email
-                                </th>
-                                <th>
-                                    Nasc
-                                </th>
-                            </tr>
-                            <?php
-                            foreach ($produto_bd as $prod_mostrar) {
-                                ?>
-                                        <tr>
-                                            <td>
-                                                <b>
-                                                    <?php echo $prod_mostrar[0]; ?>
-                                                </b>
-                                            </td>
-                                            <td>
-                                                <?php echo $prod_mostrar[1]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $prod_mostrar[2]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $prod_mostrar[3]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $prod_mostrar[4]; ?>
-                                            </td>
-                                        </tr>
-                                        <?php
+                <table id="table">
+                    <tr>
+                        <th>
+                            Cod_autor
+                        </th>
+                        <th>
+                            NomeAutor
+                        </th>
+                        <th>
+                            Sobrenome
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Nasc
+                        </th>
+                    </tr>
+                    <?php
+                    foreach ($produto_bd as $prod_mostrar) {
+                        ?>
+                        <tr>
+                            <td>
+                                <b>
+                                    <?php echo $prod_mostrar[0]; ?>
+                                </b>
+                            </td>
+                            <td>
+                                <?php echo $prod_mostrar[1]; ?>
+                            </td>
+                            <td>
+                                <?php echo $prod_mostrar[2]; ?>
+                            </td>
+                            <td>
+                                <?php echo $prod_mostrar[3]; ?>
+                            </td>
+                            <td>
+                                <?php echo $prod_mostrar[4]; ?>
+                            </td>
+                        </tr>
+                        <?php
 
-                            }
+                    }
             }
             ?>
             </table>
@@ -99,9 +99,9 @@
             extract($_POST, EXTR_OVERWRITE);
             if (isset($excluir)) {
                 include_once 'autor.php';
-                $prod = new Autor();
-                $prod->setCod_autor($txtid);
-                echo '<h2>' . $prod->exclusao() . '</h2>';
+                $livro = new Autor();
+                $livro->setCod_autor($txtid);
+                echo '<h2>' . $livro->exclusao() . '</h2>';
             }
             ?>
         </form>
