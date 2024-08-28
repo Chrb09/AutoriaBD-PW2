@@ -116,7 +116,7 @@ class Livro
                 case 'Titulo':
                     $titulo = $this->getTitulo();
                     $titulo = '%' . $titulo . '%';
-                    $sql = $this->conn->prepare("select * from livro where NomeAutor like ?");
+                    $sql = $this->conn->prepare("select * from livro where Titulo like ?");
                     @$sql->bindParam(1, $titulo, PDO::PARAM_STR);
                     break;
                 case 'Categoria':
@@ -140,8 +140,6 @@ class Livro
                     @$sql->bindParam(1, $QtdePag, PDO::PARAM_STR);
                     break;
             }
-
-
             $sql->execute();
             return $sql->fetchAll();
             $this->conn = null;
