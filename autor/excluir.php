@@ -45,9 +45,9 @@
             extract($_POST, EXTR_OVERWRITE);
             if (isset($pesquisar)) {
                 include_once 'autor.php';
-                $livro = new Autor();
-                $livro->setCod_autor($txtid);
-                $produto_bd = $livro->consultar("Cod_autor");
+                $autor = new Autor();
+                $autor->setCod_autor($txtid);
+                $autor_bd = $autor->consultar("Cod_autor");
                 ?>
                 <table id="table">
                     <tr>
@@ -68,25 +68,25 @@
                         </th>
                     </tr>
                     <?php
-                    foreach ($produto_bd as $prod_mostrar) {
+                    foreach ($autor_bd as $autor_mostrar) {
                         ?>
                         <tr>
                             <td>
                                 <b>
-                                    <?php echo $prod_mostrar[0]; ?>
+                                    <?php echo $autor_mostrar[0]; ?>
                                 </b>
                             </td>
                             <td>
-                                <?php echo $prod_mostrar[1]; ?>
+                                <?php echo $autor_mostrar[1]; ?>
                             </td>
                             <td>
-                                <?php echo $prod_mostrar[2]; ?>
+                                <?php echo $autor_mostrar[2]; ?>
                             </td>
                             <td>
-                                <?php echo $prod_mostrar[3]; ?>
+                                <?php echo $autor_mostrar[3]; ?>
                             </td>
                             <td>
-                                <?php echo $prod_mostrar[4]; ?>
+                                <?php echo $autor_mostrar[4]; ?>
                             </td>
                         </tr>
                         <?php
@@ -99,9 +99,9 @@
             extract($_POST, EXTR_OVERWRITE);
             if (isset($excluir)) {
                 include_once 'autor.php';
-                $livro = new Autor();
-                $livro->setCod_autor($txtid);
-                echo '<h2>' . $livro->exclusao() . '</h2>';
+                $autor = new Autor();
+                $autor->setCod_autor($txtid);
+                echo '<h2>' . $autor->exclusao() . '</h2>';
             }
             ?>
         </form>
