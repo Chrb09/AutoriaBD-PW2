@@ -23,16 +23,19 @@
             <div class="linha">
                 <p>Pesquisar na coluna:</p>
                 <select name="escolha" id="escolha-bd">
+                    <option value="CodAutor_CidLivro" selected>CodAutor e CidLivro</option>
                     <option value="Cod_autor">Cod_autor</option>
-                    <option value="Nome" selected>Nome</option>
-                    <option value="Sobrenome">Sobrenome</option>
-                    <option value="Email">Email</option>
-                    <option value="Data_Nascimento">Data de Nascimento</option>
+                    <option value="Cid_livro">Cid_livro</option>
+                    <option value="Data_Lancamento">Data Lancamento</option>
+                    <option value="Editora">Editora</option>
                 </select>
             </div>
-            <div class="linha">
-                <p id="p-bd">Nome:</p>
-                <input name="txtpesquisar" id="txtpesquisa" type="text" maxlength="50" placeholder="Nome do autor..."
+            <div class="linha" id="linha">
+                <p id="p-cod">Código do Autor:</p>
+                <input name="txtcod" id="txtpesquisa" type="number" maxlength="50" placeholder="Codigo do autor..."
+                    required autocomplete="off">
+                <p id="p-cid">Cid do Livro:</p>
+                <input name="txtcid" id="txtpesquisa2" type="number" maxlength="50" placeholder="Cid do livro..."
                     required autocomplete="off">
             </div>
             <div class="linha linha-button"><button name="enviar" type="submit" class="button-outline"
@@ -43,26 +46,27 @@
         <?php
         extract($_POST, EXTR_OVERWRITE);
         if (isset($enviar)) {
-            include_once 'autor.php';
-            $livro = new Autor();
+            include_once 'autoria.php';
+            $autoria = new Autoria();
             switch ($escolha) {
+                case 'CodAutor_CidLivro':
+                    $autoria->setCod_autor($txtcod);
+                    $autoria->setCid_livro($txtcid);
+                    break;
                 case 'Cod_autor':
-                    $livro->setCod_autor($txtpesquisar);
+                    $autoria->setCod_autor($txtpesquisar);
                     break;
-                case 'Nome':
-                    $livro->setNomeAutor($txtpesquisar);
+                case 'Cid_livro':
+                    $autoria->setCid_livro($txtpesquisar);
                     break;
-                case 'Sobrenome':
-                    $livro->setSobrenome($txtpesquisar);
+                case 'Data_Lancamento':
+                    $autoria->setDataLancamento($txtpesquisar);
                     break;
-                case 'Email':
-                    $livro->setEmail($txtpesquisar);
-                    break;
-                case 'Data_Nascimento':
-                    $livro->setNasc($txtpesquisar);
+                case 'Editora':
+                    $autoria->setEditora($txtpesquisar);
                     break;
             }
-            $produto_bd = $livro->consultar($escolha);
+            $autoria_bd = $autoria->consultar($escolha);
 
             ?>
             <table>
@@ -71,38 +75,34 @@
                         Cod_autor
                     </th>
                     <th>
-                        NomeAutor
+                        Cid_livro
                     </th>
                     <th>
-                        Sobrenome
+                        DataLancamento
                     </th>
                     <th>
-                        Email
-                    </th>
-                    <th>
-                        Nasc
+                        Editora
                     </th>
                 </tr>
                 <?php
-                foreach ($produto_bd as $prod_mostrar) {
+                foreach ($autoria_bd as $autoria_mostrar) {
                     ?>
                     <tr>
                         <td>
                             <b>
-                                <?php echo $prod_mostrar[0]; ?>
+                                <?php echo $autoria_mostrar[0]; ?>
                             </b>
                         </td>
                         <td>
-                            <?php echo $prod_mostrar[1]; ?>
+                            <b>
+                                <?php echo $autoria_mostrar[1]; ?>
+                            </b>
                         </td>
                         <td>
-                            <?php echo $prod_mostrar[2]; ?>
+                            <?php echo $autoria_mostrar[2]; ?>
                         </td>
                         <td>
-                            <?php echo $prod_mostrar[3]; ?>
-                        </td>
-                        <td>
-                            <?php echo $prod_mostrar[4]; ?>
+                            <?php echo $autoria_mostrar[3]; ?>
                         </td>
                     </tr>
                     <?php
@@ -127,15 +127,39 @@
 
     function mudar() {
         let valor = escolha.value;
-        p.innerHTML = valor + ":";
-        pesquisa.placeholder = valor + " do autor...";
-        if (valor == "Cod_autor") {
-            pesquisa.type = 'number'
-        } else if (valor == "Data_Nascimento") {
-            pesquisa.type = 'date'
+
+        if (valor == "CodAutor_CidLivro") {
+            $("#linha").replaceWith(
+                '<div class="linha" id="linha">' +
+                '<p id="p-cod">Código do Autor:</p>' +
+                '<input name="txtcod" id="txtpesquisa" type="number" maxlength="50" placeholder="Codigo do autor..." required autocomplete="off">' +
+                '<p id="p-cid">Cid do Livro:</p>' +
+                '<input name="txtcid" id="txtpesquisa2" type="number" maxlength="50" placeholder="Cid do livro..." required autocomplete="off">' +
+                '</div>'
+            )
+        } else if (valor == "Cod_autor" || valor == "Cid_livro") {
+            $("#linha").replaceWith(
+                '<div class="linha"  id="linha">' +
+                '<p id="p-bd">' + valor + ':</p>' +
+                '<input name = "txtpesquisar" id = "txtpesquisa" type = "number" maxlength = "50" placeholder = "' + valor + ' da autoria..." required autocomplete = "off" >' +
+                '</div>'
+            )
+        }
+        else if (valor == "Data_Lancamento") {
+            $("#linha").replaceWith(
+                '<div class="linha"  id="linha">' +
+                '<p id="p-bd">' + valor + ':</p>' +
+                '<input name = "txtpesquisar" id = "txtpesquisa" type = "date" maxlength = "50" placeholder = "' + valor + ' da autoria..." required autocomplete = "off" >' +
+                '</div>'
+            )
         }
         else {
-            pesquisa.type = 'text'
+            $("#linha").replaceWith(
+                '<div class="linha"  id="linha">' +
+                '<p id="p-bd">' + valor + ':</p>' +
+                '<input name = "txtpesquisar" id = "txtpesquisa" type = "text" maxlength = "50" placeholder = "' + valor + ' da autoria..." required autocomplete = "off" >' +
+                '</div>'
+            )
         }
     }
 
@@ -144,19 +168,19 @@
     });
 
     limpar.addEventListener("click", () => {
-        escolha.value = "Nome";
+        escolha.value = "CodAutor_CidLivro";
         var selectedcategory = $(this).children("option:selected").val();
-        sessionStorage.setItem("itemAutor", selectedcategory);
+        sessionStorage.setItem("itemAutoria", selectedcategory);
         mudar()
     });
 
 
     $('#escolha-bd').change(function (event) {
         var selectedcategory = $(this).children("option:selected").val();
-        sessionStorage.setItem("itemAutor", selectedcategory);
+        sessionStorage.setItem("itemAutoria", selectedcategory);
     });
 
-    $('select').find('option[value=' + sessionStorage.getItem('itemAutor') + ']').attr('selected', 'selected');
+    $('select').find('option[value=' + sessionStorage.getItem('itemAutoria') + ']').attr('selected', 'selected');
 
     window.onload(mudar())
 

@@ -88,7 +88,7 @@ class Autoria
         try {
             $this->conn = new Conectar();
             switch ($iescolha) {
-                case 'Cod_e_Cid':
+                case 'CodAutor_CidLivro':
                     $sql = $this->conn->prepare("select * from autoria where Cod_autor like ? AND Cod_livro like ?");
                     @$sql->bindParam(1, $this->getCod_autor(), PDO::PARAM_STR);
                     @$sql->bindParam(2, $this->getCid_livro(), PDO::PARAM_STR);
@@ -98,16 +98,16 @@ class Autoria
                     @$sql->bindParam(1, $this->getCod_autor(), PDO::PARAM_STR);
                     break;
                 case 'Cid_livro':
-                    $sql = $this->conn->prepare("select * from autoria where Cid_livro like ?");
+                    $sql = $this->conn->prepare("select * from autoria where Cod_livro like ?");
                     @$sql->bindParam(1, $this->getCid_livro(), PDO::PARAM_STR);
                     break;
-                case 'DataLancamento':
+                case 'Data_Lancamento':
                     $sql = $this->conn->prepare("select * from autoria where DataLancamento like ?");
                     @$sql->bindParam(1, $this->getDataLancamento(), PDO::PARAM_STR);
                     break;
                 case 'Editora':
                     $Editora = $this->getEditora();
-                    $Editora = $Editora . '%';
+                    $Editora = '%' . $Editora . '%';
                     $sql = $this->conn->prepare("select * from autoria where Editora like ?");
                     @$sql->bindParam(1, $Editora, PDO::PARAM_STR);
                     break;

@@ -43,7 +43,7 @@
             </div>
             <?php
             extract($_POST, EXTR_OVERWRITE);
-            if (isset($enviar)) {
+            if (isset($pesquisar)) {
                 include_once 'livro.php';
                 $livro = new Livro();
                 $livro->setCid_Livro($txtid);

@@ -32,7 +32,7 @@
                     Cod_autor
                 </th>
                 <th>
-                    Cod_livro
+                    Cid_livro
                 </th>
                 <th>
                     DataLancamento
