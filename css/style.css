@@ -129,6 +129,9 @@ th,
 td {
   padding-inline: 1rem;
   padding-block: 0.25rem;
+  max-width: 40ch;
+  text-wrap: wrap;
+  word-wrap: break-word;
 }
 
 th {
