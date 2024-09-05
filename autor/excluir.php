@@ -33,8 +33,8 @@
         <form name="formProduto" id="formProduto" method="POST" action="">
             <div class="linha">
                 <p>Cod_autor:</p>
-                <input name="txtid" onchange="saveId()" id="bdid" type="number" maxlength="50"
-                    placeholder="Código do autor..." required autocomplete="off">
+                <input name="txtid" onchange="" id="bdid" type="number" maxlength="50" placeholder="Código do autor..."
+                    required autocomplete="off">
             </div>
             <div class="linha linha-button" id="linha-pesquisar">
                 <button name="pesquisar" id="pesquisar" type="submit" class="button-outline">Pesquisar</button>
