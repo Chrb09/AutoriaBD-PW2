@@ -17,7 +17,7 @@
             <div class="linha">
                 <p>Pesquisar na coluna:</p>
                 <select name="escolha" id="escolha-bd">
-                    <option value="Cid_livro ">Cid_livro </option>
+                    <option value="Cid_livro ">Cid_livro</option>
                     <option value="Titulo" selected>Titulo</option>
                     <option value="Categoria">Categoria</option>
                     <option value="ISBN">ISBN</option>
@@ -41,7 +41,7 @@
             include_once 'livro.php';
             $livro = new Livro();
             switch ($escolha) {
-                case 'Cid_Livro':
+                case 'Cid_livro':
                     $livro->setCid_Livro($txtpesquisar);
                     break;
                 case 'Titulo':
