@@ -48,50 +48,55 @@
                 $autor = new Autor();
                 $autor->setCod_autor($txtid);
                 $autor_bd = $autor->consultar("Cod_autor");
-                ?>
-                <table id="table">
-                    <tr>
-                        <th>
-                            Cod_autor
-                        </th>
-                        <th>
-                            NomeAutor
-                        </th>
-                        <th>
-                            Sobrenome
-                        </th>
-                        <th>
-                            Email
-                        </th>
-                        <th>
-                            Nasc
-                        </th>
-                    </tr>
-                    <?php
-                    foreach ($autor_bd as $autor_mostrar) {
-                        ?>
+
+                if (count($autor_bd) === 0) {
+                    echo "<h2>Nenhum Registro com Cod  $txtid </h2>";
+                } else {
+                    ?>
+                    <table id="table">
                         <tr>
-                            <td>
-                                <b>
-                                    <?php echo $autor_mostrar[0]; ?>
-                                </b>
-                            </td>
-                            <td>
-                                <?php echo $autor_mostrar[1]; ?>
-                            </td>
-                            <td>
-                                <?php echo $autor_mostrar[2]; ?>
-                            </td>
-                            <td>
-                                <?php echo $autor_mostrar[3]; ?>
-                            </td>
-                            <td>
-                                <?php echo $autor_mostrar[4]; ?>
-                            </td>
+                            <th>
+                                Cod_autor
+                            </th>
+                            <th>
+                                NomeAutor
+                            </th>
+                            <th>
+                                Sobrenome
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Nasc
+                            </th>
                         </tr>
                         <?php
+                        foreach ($autor_bd as $autor_mostrar) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <b>
+                                        <?php echo $autor_mostrar[0]; ?>
+                                    </b>
+                                </td>
+                                <td>
+                                    <?php echo $autor_mostrar[1]; ?>
+                                </td>
+                                <td>
+                                    <?php echo $autor_mostrar[2]; ?>
+                                </td>
+                                <td>
+                                    <?php echo $autor_mostrar[3]; ?>
+                                </td>
+                                <td>
+                                    <?php echo $autor_mostrar[4]; ?>
+                                </td>
+                            </tr>
+                            <?php
 
-                    }
+                        }
+                }
             }
             ?>
             </table>

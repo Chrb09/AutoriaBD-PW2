@@ -17,7 +17,7 @@
             <div class="linha">
                 <p>Pesquisar na coluna:</p>
                 <select name="escolha" id="escolha-bd">
-                    <option value="Cid_livro ">Cid_livro</option>
+                    <option value="Cid_livro">Cid_livro</option>
                     <option value="Titulo" selected>Titulo</option>
                     <option value="Categoria">Categoria</option>
                     <option value="ISBN">ISBN</option>
@@ -136,7 +136,7 @@
 
         if (valor == "Cid_livro" || valor == "Quantidade_Páginas") {
             $("#txtselect").replaceWith(
-                ' <input name="txtpesquisar" id="txtpesquisa" type="text" maxlength="50" placeholder="' + valor + ' do livro..."required autocomplete="off">'
+                ' <input name="txtpesquisar" id="txtpesquisa" type="number" maxlength="50" placeholder="' + valor + ' do livro..."required autocomplete="off">'
             )
             pesquisa.type = 'number'
         } else if (valor == "Categoria") {

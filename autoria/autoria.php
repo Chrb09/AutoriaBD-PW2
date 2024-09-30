@@ -131,6 +131,23 @@ class Autoria
             return "Erro na exclusão!";
         }
     }
+    function alterar()
+    {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("update Autoria set DataLancamento = ?, Editora = ? where Cod_autor = ? and Cod_livro = ?");
+            @$sql->bindParam(1, $this->getDataLancamento(), PDO::PARAM_STR);
+            @$sql->bindParam(2, $this->getEditora(), PDO::PARAM_STR);
+            @$sql->bindParam(3, $this->getCod_autor(), PDO::PARAM_STR);
+            @$sql->bindParam(4, $this->getCid_livro(), PDO::PARAM_STR);
+            if ($sql->execute() == 1) {
+                return 1;
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            echo "Erro ao alterar. " . $exc->getMessage();
+        }
+    }
 } // encerramento de classe Produto
 
 ?>

@@ -58,46 +58,50 @@
                 $autoria->setCid_livro($txtcid);
                 $autoria_bd = $autoria->consultar("CodAutor_CidLivro");
 
-                ?>
-                <table>
-                    <tr>
-                        <th>
-                            Cod_autor
-                        </th>
-                        <th>
-                            Cid_livro
-                        </th>
-                        <th>
-                            DataLancamento
-                        </th>
-                        <th>
-                            Editora
-                        </th>
-                    </tr>
-                    <?php
-                    foreach ($autoria_bd as $autoria_mostrar) {
-                        ?>
+                if (count($autoria_bd) === 0) {
+                    echo "<h2>Nenhum Registro com Cod $txtcod e Cid $txtcid </h2>";
+                } else {
+                    ?>
+                    <table>
                         <tr>
-                            <td>
-                                <b>
-                                    <?php echo $autoria_mostrar[0]; ?>
-                                </b>
-                            </td>
-                            <td>
-                                <b>
-                                    <?php echo $autoria_mostrar[1]; ?>
-                                </b>
-                            </td>
-                            <td>
-                                <?php echo $autoria_mostrar[2]; ?>
-                            </td>
-                            <td>
-                                <?php echo $autoria_mostrar[3]; ?>
-                            </td>
+                            <th>
+                                Cod_autor
+                            </th>
+                            <th>
+                                Cid_livro
+                            </th>
+                            <th>
+                                DataLancamento
+                            </th>
+                            <th>
+                                Editora
+                            </th>
                         </tr>
                         <?php
+                        foreach ($autoria_bd as $autoria_mostrar) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <b>
+                                        <?php echo $autoria_mostrar[0]; ?>
+                                    </b>
+                                </td>
+                                <td>
+                                    <b>
+                                        <?php echo $autoria_mostrar[1]; ?>
+                                    </b>
+                                </td>
+                                <td>
+                                    <?php echo $autoria_mostrar[2]; ?>
+                                </td>
+                                <td>
+                                    <?php echo $autoria_mostrar[3]; ?>
+                                </td>
+                            </tr>
+                            <?php
 
-                    }
+                        }
+                }
             }
             ?>
             </table>

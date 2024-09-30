@@ -158,6 +158,25 @@ class Livro
             return "Erro na exclusão!";
         }
     }
+    function alterar()
+    {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("update Livro set Titulo = ?, Categoria = ?, ISBN = ?, Idioma = ?, QtdePag = ? where Cid_livro = ?");
+            @$sql->bindParam(1, $this->getTitulo(), PDO::PARAM_STR);
+            @$sql->bindParam(2, $this->getCategoria(), PDO::PARAM_STR);
+            @$sql->bindParam(3, $this->getISBN(), PDO::PARAM_STR);
+            @$sql->bindParam(4, $this->getIdioma(), PDO::PARAM_STR);
+            @$sql->bindParam(5, $this->getQtdePag(), PDO::PARAM_STR);
+            @$sql->bindParam(6, $this->getCid_livro(), PDO::PARAM_STR);
+            if ($sql->execute() == 1) {
+                return 1;
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            echo "Erro ao alterar. " . $exc->getMessage();
+        }
+    }
 } // encerramento de classe Produto
 
 ?>

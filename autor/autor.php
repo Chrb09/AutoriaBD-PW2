@@ -146,6 +146,24 @@ class Autor
             return "Erro na exclusão!";
         }
     }
+    function alterar()
+    {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("update Autor set NomeAutor = ?, Sobrenome = ?, Email = ?, Nasc = ? where Cod_autor = ?");
+            @$sql->bindParam(1, $this->getNomeAutor(), PDO::PARAM_STR);
+            @$sql->bindParam(2, $this->getSobrenome(), PDO::PARAM_STR);
+            @$sql->bindParam(3, $this->getEmail(), PDO::PARAM_STR);
+            @$sql->bindParam(4, $this->getNasc(), PDO::PARAM_STR);
+            @$sql->bindParam(5, $this->getCod_autor(), PDO::PARAM_STR);
+            if ($sql->execute() == 1) {
+                return 1;
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            echo "Erro ao alterar. " . $exc->getMessage();
+        }
+    }
 } // encerramento de classe Produto
 
 ?>

@@ -48,56 +48,61 @@
                 $livro = new Livro();
                 $livro->setCid_Livro($txtid);
                 $livro_bd = $livro->consultar("Cid_livro");
-                ?>
-                <table id="table">
-                    <tr>
-                        <th>
-                            Cid_livro
-                        </th>
-                        <th>
-                            Titulo
-                        </th>
-                        <th>
-                            Categoria
-                        </th>
-                        <th>
-                            ISBN
-                        </th>
-                        <th>
-                            Idioma
-                        </th>
-                        <th>
-                            QtdePag
-                        </th>
-                    </tr>
-                    <?php
-                    foreach ($livro_bd as $livro_mostrar) {
-                        ?>
+
+                if (count($livro_bd) === 0) {
+                    echo "<h2>Nenhum Registro com Cid $txtid </h2>";
+                } else {
+                    ?>
+                    <table id="table">
                         <tr>
-                            <td>
-                                <b>
-                                    <?php echo $livro_mostrar[0]; ?>
-                                </b>
-                            </td>
-                            <td>
-                                <?php echo $livro_mostrar[1]; ?>
-                            </td>
-                            <td>
-                                <?php echo $livro_mostrar[2]; ?>
-                            </td>
-                            <td>
-                                <?php echo $livro_mostrar[3]; ?>
-                            </td>
-                            <td>
-                                <?php echo $livro_mostrar[4]; ?>
-                            </td>
-                            <td>
-                                <?php echo $livro_mostrar[5]; ?>
-                            </td>
+                            <th>
+                                Cid_livro
+                            </th>
+                            <th>
+                                Titulo
+                            </th>
+                            <th>
+                                Categoria
+                            </th>
+                            <th>
+                                ISBN
+                            </th>
+                            <th>
+                                Idioma
+                            </th>
+                            <th>
+                                QtdePag
+                            </th>
                         </tr>
                         <?php
+                        foreach ($livro_bd as $livro_mostrar) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <b>
+                                        <?php echo $livro_mostrar[0]; ?>
+                                    </b>
+                                </td>
+                                <td>
+                                    <?php echo $livro_mostrar[1]; ?>
+                                </td>
+                                <td>
+                                    <?php echo $livro_mostrar[2]; ?>
+                                </td>
+                                <td>
+                                    <?php echo $livro_mostrar[3]; ?>
+                                </td>
+                                <td>
+                                    <?php echo $livro_mostrar[4]; ?>
+                                </td>
+                                <td>
+                                    <?php echo $livro_mostrar[5]; ?>
+                                </td>
+                            </tr>
+                            <?php
 
-                    }
+                        }
+                }
             }
             ?>
             </table>
