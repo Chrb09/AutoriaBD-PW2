@@ -105,7 +105,14 @@ INSERT INTO `livro` (`Cid_livro`, `Titulo`, `Categoria`, `ISBN`, `Idioma`, `Qtde
 --
 -- Índices para tabelas despejadas
 --
+CREATE TABLE `usuario`(
+  `Login` varchar(5) NOT NULL,
+  `Senha` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `usuario` (`Login`, `Senha`) VALUES
+('a', 123),
+('b', 456);
 --
 -- Índices para tabela `autor`
 --
